@@ -30,5 +30,5 @@
 #-dontwarn org.openjsse.javax.net.ssl.SSLSocket
 #-dontwarn org.openjsse.net.ssl.OpenJSSE
 
--keep public class com.mmj.movieapp.core.generic.dto.** { *; }
--keep public class com.mmj.movieapp.data.model.remote.dto.** { *; }
+-keep public class com.luckyfrog.ecommerceapp.core.generic.dto.** { *; }
+-keep public class com.luckyfrog.ecommerceapp.data.model.remote.dto.** { *; }

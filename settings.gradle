@@ -15,5 +15,5 @@ dependencyResolutionManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = "Movie App"
+rootProject.name = "Ecommerce App"
 include ':app'

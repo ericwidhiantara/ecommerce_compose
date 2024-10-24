@@ -22,11 +22,11 @@ android {
         }
     }
 
-    namespace 'com.mmj.movieapp'
+    namespace 'com.luckyfrog.ecommerceapp'
     compileSdk project.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.mmj.movieapp"
+        applicationId "com.luckyfrog.ecommerceapp"
         minSdk project.minSdkVersion
         targetSdk project.targetSdkVersion
         versionCode 1
