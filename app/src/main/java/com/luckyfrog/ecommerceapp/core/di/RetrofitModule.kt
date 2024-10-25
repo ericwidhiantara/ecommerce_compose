@@ -1,7 +1,7 @@
 package com.luckyfrog.ecommerceapp.core.di
 
 import com.luckyfrog.ecommerceapp.core.app.AppPreferences
-import com.luckyfrog.ecommerceapp.core.network.ecommerceApi
+import com.luckyfrog.ecommerceapp.core.network.ProductApi
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -49,14 +49,14 @@ object RetrofitModule {
     @Provides
     fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl(ecommerceApi.API_URL)
+            .baseUrl(ProductApi.SERVER_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
 
     @Singleton
     @Provides
-    fun providesIntegrateApi(retrofit: Retrofit): ecommerceApi =
-        retrofit.create(ecommerceApi::class.java)
+    fun providesIntegrateApi(retrofit: Retrofit): ProductApi =
+        retrofit.create(ProductApi::class.java)
 
 }

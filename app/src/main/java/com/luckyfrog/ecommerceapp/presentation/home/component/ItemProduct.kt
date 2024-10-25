@@ -31,12 +31,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
-import com.luckyfrog.ecommerceapp.core.app.Constants
-import com.luckyfrog.ecommerceapp.domain.model.Movie
+import com.luckyfrog.ecommerceapp.domain.entity.ProductEntity
 
 @Composable
-fun ItemMovie(
-    itemEntity: Movie,
+fun ItemProduct(
+    itemEntity: ProductEntity,
     onClick: () -> Unit
 ) {
     Card(
@@ -52,9 +51,10 @@ fun ItemMovie(
             defaultElevation = 8.dp
         )
     ) {
-        val painter = rememberAsyncImagePainter(Constants.IMAGE_URL_MOVIE + itemEntity.backdropPath)
+        val painter = rememberAsyncImagePainter(itemEntity.thumbnail)
         val transition by animateFloatAsState(
-            targetValue = if (painter.state is AsyncImagePainter.State.Success) 1f else 0f
+            targetValue = if (painter.state is AsyncImagePainter.State.Success) 1f else 0f,
+            label = ""
         )
         Column {
             Box(
@@ -84,7 +84,7 @@ fun ItemMovie(
                     )
 
                     Text(
-                        text = itemEntity.voteAverage.toString() + "/10",
+                        text = itemEntity.rating.toString() + "/5",
                         style = MaterialTheme.typography.titleSmall,
                         color = Color.Yellow,
                         modifier = Modifier.padding(start = 5.dp)
@@ -107,7 +107,7 @@ fun ItemMovie(
             Spacer(modifier = Modifier.padding(vertical = 4.dp))
 
             Text(
-                text = itemEntity.overview,
+                text = itemEntity.description,
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
                     .padding(bottom = 8.dp),

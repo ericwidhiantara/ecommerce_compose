@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.luckyfrog.ecommerceapp.domain.model.Movie
-import com.luckyfrog.ecommerceapp.domain.usecase.GetMoviesUseCase
+import com.luckyfrog.ecommerceapp.domain.entity.ProductEntity
+import com.luckyfrog.ecommerceapp.domain.usecase.GetProductsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -14,11 +14,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getMoviesUseCase: GetMoviesUseCase
+    private val getProductsUseCase: GetProductsUseCase
 ) : ViewModel() {
 
-    private val _moviesState: MutableStateFlow<PagingData<Movie>> = MutableStateFlow(value = PagingData.empty())
-    val moviesState: MutableStateFlow<PagingData<Movie>> get() = _moviesState
+    private val _productsState: MutableStateFlow<PagingData<ProductEntity>> = MutableStateFlow(value = PagingData.empty())
+    val productsState: MutableStateFlow<PagingData<ProductEntity>> get() = _productsState
 
     init {
         onEvent(HomeEvent.GetHome)
@@ -28,18 +28,18 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             when (event) {
                 is HomeEvent.GetHome -> {
-                    getMovies()
+                    getProducts()
                 }
             }
         }
     }
 
-    private suspend fun getMovies() {
-        getMoviesUseCase.execute(Unit)
+    private suspend fun getProducts() {
+        getProductsUseCase.execute(Unit)
             .distinctUntilChanged()
             .cachedIn(viewModelScope)
             .collect {
-                _moviesState.value = it
+                _productsState.value = it
             }
     }
 }
@@ -49,5 +49,5 @@ sealed class HomeEvent {
 }
 
 data class HomeState(
-    val movies: List<Movie> = listOf()
+    val products: List<ProductEntity> = listOf()
 )

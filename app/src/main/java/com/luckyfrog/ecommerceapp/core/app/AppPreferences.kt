@@ -20,8 +20,8 @@ object AppPreferences {
             Constants.DEFAULT_SYSTEM_LOCALE_LANG -> {
                 Locale.getDefault().language
             }
-            Constants.ARABIC_LOCALE_LANG -> {
-                Constants.ARABIC_LOCALE_LANG
+            Constants.INDONESIA_LOCALE_LANG -> {
+                Constants.INDONESIA_LOCALE_LANG
             }
             Constants.ENGLISH_LOCALE_LANG -> {
                 Constants.ENGLISH_LOCALE_LANG

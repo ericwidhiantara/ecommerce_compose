@@ -1,5 +1,5 @@
 package com.luckyfrog.ecommerceapp.core.generic.usecase
 
-interface BaseUseCase<In, Out>{
+interface UseCase<In, Out>{
     suspend fun execute(input: In): Out
 }

@@ -42,7 +42,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun MovieTheme(
+fun MyAppTheme(
     appTheme: AppTheme,
     isDarkMode: Boolean = isSystemInDarkTheme(),
     dynamicColor: Boolean = true,

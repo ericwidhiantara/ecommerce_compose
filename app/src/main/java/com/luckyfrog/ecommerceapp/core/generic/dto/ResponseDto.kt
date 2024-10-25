@@ -5,15 +5,15 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 class ResponseDto<T : Any?> {
-    @SerializedName("results")
-    val results: T? = null
+    @SerializedName("products")
+    val products: T? = null
 
-    @SerializedName("page")
-    val page: Int? = null
+    @SerializedName("total")
+    val total: Int? = null
 
-    @SerializedName("total_pages")
-    val totalPages: Int? = null
+    @SerializedName("skip")
+    val skip: Int? = null
 
-    @SerializedName("total_results")
-    val totalResults: Int? = null
+    @SerializedName("limit")
+    val limit: Int? = null
 }

@@ -29,8 +29,8 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.luckyfrog.ecommerceapp.R
 import com.luckyfrog.ecommerceapp.core.app.AppPreferences
-import com.luckyfrog.ecommerceapp.domain.model.Movie
-import com.luckyfrog.ecommerceapp.presentation.home.component.ItemMovie
+import com.luckyfrog.ecommerceapp.domain.entity.ProductEntity
+import com.luckyfrog.ecommerceapp.presentation.home.component.ItemProduct
 import com.luckyfrog.ecommerceapp.presentation.main.MainEvent
 import com.luckyfrog.ecommerceapp.presentation.main.MainViewModel
 import com.luckyfrog.ecommerceapp.presentation.util.ErrorMessage
@@ -45,7 +45,7 @@ fun HomeScreen(
     navController: NavController,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    val moviePagingItems: LazyPagingItems<Movie> = viewModel.moviesState.collectAsLazyPagingItems()
+    val productPagingItems: LazyPagingItems<ProductEntity> = viewModel.productsState.collectAsLazyPagingItems()
     Scaffold(
         topBar = {
             Row(
@@ -105,22 +105,22 @@ fun HomeScreen(
             modifier = Modifier.padding(it)
         ) {
             item { Spacer(modifier = Modifier.padding(4.dp)) }
-            items(moviePagingItems.itemCount) { index ->
-                ItemMovie(
-                    itemEntity = moviePagingItems[index]!!,
+            items(productPagingItems.itemCount) { index ->
+                ItemProduct(
+                    itemEntity = productPagingItems[index]!!,
                     onClick = {
                         navController.navigate(AppScreen.DetailsScreen.route)
                     }
                 )
             }
-            moviePagingItems.apply {
+            productPagingItems.apply {
                 when {
                     loadState.refresh is LoadState.Loading -> {
                         item { PageLoader(modifier = Modifier.fillParentMaxSize()) }
                     }
 
                     loadState.refresh is LoadState.Error -> {
-                        val error = moviePagingItems.loadState.refresh as LoadState.Error
+                        val error = productPagingItems.loadState.refresh as LoadState.Error
                         item {
                             ErrorMessage(
                                 modifier = Modifier.fillParentMaxSize(),
@@ -134,7 +134,7 @@ fun HomeScreen(
                     }
 
                     loadState.append is LoadState.Error -> {
-                        val error = moviePagingItems.loadState.append as LoadState.Error
+                        val error = productPagingItems.loadState.append as LoadState.Error
                         item {
                             ErrorMessage(
                                 modifier = Modifier,
